@@ -1,11 +1,11 @@
-IMAGE_NAME = mariadb
-CONTAINER_NAME = mariadb
+IMAGE_NAME = wordpress
+CONTAINER_NAME = wordpress
 
 build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run --name "$(CONTAINER_NAME)" -d -p 3306:3306 "$(IMAGE_NAME)"
+	docker run --name "$(CONTAINER_NAME)" -d -p 9000:9000 "$(IMAGE_NAME)"
 
 shell:
 	docker exec -it $(CONTAINER_NAME) bash

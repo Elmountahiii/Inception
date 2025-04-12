@@ -14,6 +14,34 @@ services:
     container_name: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
+    networks:
+      - mynetwork
+  wordpress:
+    build:
+      context: ./wordpress
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - USER_NAME=${USER_NAME}
+      - USER_EMAIL=${USER_EMAIL}
+      - USER_PASSWORD=${USER_PASSWORD}
+    ports:
+      - 9000:9000
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - mynetwork
 
 volumes:
   mariadb_data:
+
+networks:
+  mynetwork:
+    driver: bridge

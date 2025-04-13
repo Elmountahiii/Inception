@@ -3,7 +3,7 @@ version:  '3.8'
 services:
   mariadb:
     build:
-      context: ./mariadb
+      context: ./requirements/mariadb
       dockerfile: Dockerfile
     environment:
       - DATABASE_NAME=${DATABASE_NAME}
@@ -16,9 +16,10 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - mynetwork
+    restart: always
   wordpress:
     build:
-      context: ./wordpress
+      context: ./requirements/wordpress
       dockerfile: Dockerfile
     environment:
       - DATABASE_NAME=${DATABASE_NAME}
@@ -40,24 +41,35 @@ services:
       - wordpress_data:/var/www/html/wordpress
     networks:
       - mynetwork
+    restart: always
   nginx:
     build:
-     context: ./nginx
+     context: ./requirements/nginx
      dockerfile: Dockerfile
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
     ports:
-      - 80:80
       - 443:443
     container_name: nginx
     depends_on:
       - wordpress
     networks:
       - mynetwork
+    restart: always
 
 volumes:
   mariadb_data:
+    # driver: local 
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /Users/yel-moun/data/mariadb
   wordpress_data:
+    # driver: local 
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /Users/yel-moun/data/wordpress
 
 networks:
   mynetwork:

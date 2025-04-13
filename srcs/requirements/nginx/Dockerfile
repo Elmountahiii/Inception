@@ -15,3 +15,4 @@ EXPOSE 443
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
+CMD [ "nginx","-g","daemon off;"]

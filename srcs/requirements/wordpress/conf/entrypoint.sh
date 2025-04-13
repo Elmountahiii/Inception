@@ -22,5 +22,4 @@ wp config set WP_CACHE true --raw --type=constant --allow-root
 wp theme install twentytwentyfour --allow-root
 wp theme activate twentytwentyfour --allow-root
 
-
-exec php-fpm8.2 -F
+exec "$@"

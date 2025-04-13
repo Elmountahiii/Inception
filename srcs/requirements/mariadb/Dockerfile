@@ -10,3 +10,5 @@ RUN chmod 777 /usr/local/bin/entrypoint.sh
 EXPOSE 3306
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["mariadbd-safe"]

@@ -19,5 +19,8 @@ wp core install --url=$DOMAIN_NAME --title=$WORDPRESS_TITLE --admin_user=$ADMIN_
 wp user create $USER_NAME $USER_EMAIL --role=author --user_pass=$USER_PASSWORD --path=/var/www/html/wordpress --allow-root
 wp config set WP_CACHE true --raw --type=constant --allow-root
 
+wp theme install twentytwentyfour --allow-root
+wp theme activate twentytwentyfour --allow-root
+
 
 exec php-fpm8.2 -F

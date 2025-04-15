@@ -1,18 +1,13 @@
 FROM debian:bookworm-slim
 
-RUN apt-get update
-RUN apt-get install  -y nginx openssl 
-
+RUN apt-get update \
+    && apt-get install nginx -y curl openssl \
+    && mkdir -p /etc/nginx/ssl \
+    && openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/nginx/ssl/nginx-selfsigned.key \
+    -out /etc/nginx/ssl/nginx-selfsigned.crt \
+    -subj "/CN=yel-moun.42.fr"
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ./conf/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN mkdir -p /etc/nginx/ssl
-
-RUN chmod 777 /usr/local/bin/entrypoint.sh
-
-EXPOSE 443
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
-CMD [ "nginx","-g","daemon off;"]
+CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]

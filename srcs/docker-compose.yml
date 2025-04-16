@@ -17,7 +17,7 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - mynetwork
-    # restart: always
+    restart: always
   wordpress:
     build:
       context: ./requirements/wordpress
@@ -43,7 +43,7 @@ services:
       - wordpress_data:/var/www/html/wordpress
     networks:
       - mynetwork
-    # restart: always
+    restart: always
   nginx:
     build:
      context: ./requirements/nginx
@@ -59,7 +59,22 @@ services:
       - wordpress
     networks:
       - mynetwork
-    # restart: always
+    restart: always
+
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    ports:
+      - 6379:6379
+    container_name: radis
+    depends_on:
+      - wordpress
+    networks:
+      - mynetwork
+    volumes:
+      - radis_data:/data
+    restart: always
 
 volumes:
   mariadb_data:
@@ -74,6 +89,12 @@ volumes:
     #   type: none
     #   o: bind
     #   device: /Users/yel-moun/data/wordpress
+  radis_data:
+    # driver: local 
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /Users/yel-moun/data/radis
 
 networks:
   mynetwork:

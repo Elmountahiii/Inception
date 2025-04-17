@@ -75,6 +75,19 @@ services:
     volumes:
       - radis_data:/data
     restart: always
+  
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: adminer
+    depends_on:
+      - mariadb
+    networks:
+      - mynetwork
+    restart: always
 
 volumes:
   mariadb_data:

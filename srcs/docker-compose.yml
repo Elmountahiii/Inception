@@ -88,6 +88,26 @@ services:
     networks:
       - mynetwork
     restart: always
+  webpage:
+    build:
+      context: ./requirements/bonus/static
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    container_name: webpage
+    networks:
+      - mynetwork
+    restart: always
+  uptimekuma:
+    build:
+      context: ./requirements/bonus/uptimekuma
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    container_name: uptimekuma
+    networks:
+      - mynetwork
+    restart: always
 
 volumes:
   mariadb_data:

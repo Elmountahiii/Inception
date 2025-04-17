@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Docker Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .content {
+            color: #34495e;
+        }
+        .feature {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to My Dockerized Website</h1>
+            <p>A simple website running in a Docker container</p>
+        </header>
+        
+        <div class="content">
+            <div class="feature">
+                <h2>About This Site</h2>
+                <p>This is a demonstration of a simple static website that has been containerized with Docker. The site includes basic HTML and CSS styling to create a clean, modern look.</p>
+            </div>
+            
+            <div class="feature">
+                <h2>Why Docker?</h2>
+                <p>Docker makes it easy to package applications and their dependencies into containers, ensuring that they run the same way regardless of the environment. This makes deployment simple and consistent.</p>
+            </div>
+            
+            <div class="feature">
+                <h2>Getting Started</h2>
+                <p>To run this website, you just need to build the Docker image and run it. The Dockerfile takes care of setting everything up for you!</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with HTML, CSS, and containerized with Docker - 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

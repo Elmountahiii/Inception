@@ -108,6 +108,23 @@ services:
     networks:
       - mynetwork
     restart: always
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+    ports:
+      - 21:21
+    environment:
+      - FTP_USER=${FTP_USER}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    container_name: ftp
+    depends_on:
+      - wordpress
+    networks:
+      - mynetwork
+    restart: always
 
 volumes:
   mariadb_data:

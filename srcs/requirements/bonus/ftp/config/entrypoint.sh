@@ -1,9 +1,8 @@
 #!/bin/bash
-# Create FTP user if not exists
-if ! id "ftpuser" &>/dev/null; then
-    useradd -m ftpuser
-    echo "ftpuser:elmountahi" | chpasswd
+
+if ! id "${FTP_USER}" &>/dev/null; then
+    useradd -m "${FTP_USER}"
+    echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
 fi
 
-# Start vsftpd
 exec $@

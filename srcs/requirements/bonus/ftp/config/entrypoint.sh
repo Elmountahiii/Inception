@@ -1,8 +1,11 @@
 #!/bin/bash
 
-if ! id "${FTP_USER}" &>/dev/null; then
-    useradd -m "${FTP_USER}"
-    echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
-fi
+useradd -d /var/www/html/wordpress -s /bin/bash ${FTP_USER}
+echo "${FTP_USER}:${FTP_PASSWORD}" | chpasswd
 
-exec $@
+echo "${FTP_USER}" > /etc/vsftpd.userlist
+
+chown -R ${FTP_USER}:${FTP_USER} /var/www/html/wordpress
+chmod -R 755 /var/www/html/wordpress
+
+exec "$@"

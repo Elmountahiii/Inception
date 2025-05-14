@@ -113,7 +113,8 @@ services:
       context: ./requirements/bonus/ftp
       dockerfile: Dockerfile
     ports:
-      - 21:21
+      - "21:21"
+      - "21100-21110:21100-21110"  # Add this for passive mode
     environment:
       - FTP_USER=${FTP_USER}
       - FTP_PASSWORD=${FTP_PASSWORD}

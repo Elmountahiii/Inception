@@ -1,4 +1,9 @@
 all:
+	@if [ ! -f srcs/.env ]; then \
+		echo "Error: srcs/.env file not found!"; \
+		echo "Please create the .env file in the srcs directory before running docker-compose"; \
+        exit 1; \
+    fi
 	cd srcs && docker-compose up -d
 
 clean:

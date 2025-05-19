@@ -34,8 +34,6 @@ services:
       - USER_EMAIL=${USER_EMAIL}
       - USER_PASSWORD=${USER_PASSWORD}
       - WORDPRESS_TITLE=${WORDPRESS_TITLE}
-    ports:
-      - 9000:9000
     container_name: wordpress
     depends_on:
       - mariadb
@@ -73,7 +71,7 @@ services:
     networks:
       - mynetwork
     volumes:
-      - radis_data:/data
+      - redis_data:/data
     restart: always
   
   adminer:
@@ -129,23 +127,23 @@ services:
 
 volumes:
   mariadb_data:
-    # driver: local 
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /Users/yel-moun/data/mariadb
+    driver: local 
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/elmountahi/data/mariadb
   wordpress_data:
-    # driver: local 
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /Users/yel-moun/data/wordpress
-  radis_data:
-    # driver: local 
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /Users/yel-moun/data/radis
+    driver: local 
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/elmountahi/data/wordpress
+  redis_data:
+    driver: local 
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/elmountahi/data/redis
 
 networks:
   mynetwork:

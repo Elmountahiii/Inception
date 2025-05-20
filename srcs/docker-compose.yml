@@ -5,6 +5,7 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    image : mariadb:1.0
     environment:
       - DATABASE_NAME=${DATABASE_NAME}
       - DATABASE_USER=${DATABASE_USER}
@@ -22,6 +23,7 @@ services:
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
+    image : wordpress:1.0
     environment:
       - DATABASE_NAME=${DATABASE_NAME}
       - DATABASE_USER=${DATABASE_USER}
@@ -46,6 +48,7 @@ services:
     build:
      context: ./requirements/nginx
      dockerfile: Dockerfile
+    image : nginx:1.0
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
     ports:
@@ -63,6 +66,7 @@ services:
     build:
       context: ./requirements/bonus/redis
       dockerfile: Dockerfile
+    image : redis:1.0
     ports:
       - 6379:6379
     container_name: radis
@@ -78,6 +82,7 @@ services:
     build:
       context: ./requirements/bonus/adminer
       dockerfile: Dockerfile
+    image : adminer:1.0
     ports:
       - 8080:8080
     container_name: adminer
@@ -90,6 +95,7 @@ services:
     build:
       context: ./requirements/bonus/static
       dockerfile: Dockerfile
+    image : webpage:1.0
     ports:
       - 80:80
     container_name: webpage
@@ -100,6 +106,7 @@ services:
     build:
       context: ./requirements/bonus/uptimekuma
       dockerfile: Dockerfile
+    image : uptimekuma:1.0
     ports:
       - 3001:3001
     container_name: uptimekuma
@@ -110,6 +117,7 @@ services:
     build:
       context: ./requirements/bonus/ftp
       dockerfile: Dockerfile
+    image : ftp:1.0
     ports:
       - "21:21"
       - "21100-21110:21100-21110"
@@ -131,19 +139,19 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/elmountahi/data/mariadb
+      device: /home/yel-moun/data/mariadb
   wordpress_data:
     driver: local 
     driver_opts:
       type: none
       o: bind
-      device: /Users/elmountahi/data/wordpress
+      device: /home/yel-moun/data/wordpress
   redis_data:
     driver: local 
     driver_opts:
       type: none
       o: bind
-      device: /Users/elmountahi/data/redis
+      device: /home/yel-moun/data/redis
 
 networks:
   mynetwork:
